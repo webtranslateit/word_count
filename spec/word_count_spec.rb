@@ -8,6 +8,16 @@ describe "Word Count" do
       str = "the brown fox jumped over the lazy dog"
       str.word_count.should == 8
     end
+
+    it "should not crap out on special characters" do
+      str = "the \"brown\" fox 'jumped' | over \\ the / lazy dog"
+      str.word_count.should == 9
+    end
+
+    it "should not count HTML tags" do
+      str = "<a href=\"http://thefamousfox.com\">the brown fox</a> jumped over the lazy dog"
+      str.word_count.should == 9
+    end
   end
 
   context "On a Hash" do
